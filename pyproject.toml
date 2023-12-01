@@ -1,0 +1,29 @@
+[build-system]
+requires = [ "setuptools",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jaffle_shop"
+readme = "README.md"
+dynamic = [ "dependencies", "version",]
+
+[project.scripts]
+jaffle-shop = "jaffle_shop.__main__:main"
+
+[tool.kedro]
+package_name = "jaffle_shop"
+project_name = "Jaffle Shop"
+kedro_init_version = "0.18.14"
+tools = "['Data Structure', 'Kedro Viz']"
+
+[project.entry-points."kedro.hooks"]
+
+[tool.setuptools.dynamic.dependencies]
+file = "requirements.txt"
+
+[tool.setuptools.dynamic.version]
+attr = "jaffle_shop.__version__"
+
+[tool.setuptools.packages.find]
+where = [ "src",]
+namespaces = false

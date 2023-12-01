@@ -1,0 +1,11 @@
+ipython>=7.31.1, <8.0; python_version < '3.8'
+ipython~=8.10; python_version >= '3.8'
+jupyterlab_server>=2.11.1
+jupyterlab~=3.0
+jupyter~=1.0
+kedro-datasets[pandas.CSVDataset, pandas.ExcelDataset, pandas.ParquetDataset, plotly.PlotlyDataset, plotly.JSONDataset, matplotlib.MatplotlibWriter]~=1.0
+kedro-telemetry~=0.2.0
+kedro-viz @ git+https://github.com/kedro-org/kedro-viz.git@main#subdirectory=package
+kedro~=0.18.14
+scikit-learn~=1.0
+seaborn~=0.12.1
