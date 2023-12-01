@@ -1,0 +1,4 @@
+_duckdb:
+  backend: duckdb
+  database: jaffle_shop.duckdb
+  threads: 24
