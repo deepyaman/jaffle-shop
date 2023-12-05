@@ -1,17 +1,35 @@
 raw_customers:
   type: jaffle_shop.datasets.ibis.TableDataset
-  filepath: data/01_raw/raw_customers.csv
-  file_format: csv
+  table_name: raw_customers
   connection: ${_duckdb}
+  save_args:
+    materialized: table
 
 raw_orders:
   type: jaffle_shop.datasets.ibis.TableDataset
-  filepath: data/01_raw/raw_orders.csv
-  file_format: csv
+  table_name: raw_orders
   connection: ${_duckdb}
+  save_args:
+    materialized: table
 
 raw_payments:
   type: jaffle_shop.datasets.ibis.TableDataset
-  filepath: data/01_raw/raw_payments.csv
-  file_format: csv
+  table_name: raw_payments
+  connection: ${_duckdb}
+  save_args:
+    materialized: table
+
+stg_customers:
+  type: jaffle_shop.datasets.ibis.TableDataset
+  table_name: stg_customers
+  connection: ${_duckdb}
+
+stg_orders:
+  type: jaffle_shop.datasets.ibis.TableDataset
+  table_name: stg_orders
+  connection: ${_duckdb}
+
+stg_payments:
+  type: jaffle_shop.datasets.ibis.TableDataset
+  table_name: stg_payments
   connection: ${_duckdb}
