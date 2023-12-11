@@ -11,6 +11,12 @@ if TYPE_CHECKING:
 
 
 class TableDataset(AbstractDataset[ir.Table, ir.Table]):
+    DEFAULT_LOAD_ARGS: ClassVar[dict[str, Any]] = {}
+    DEFAULT_SAVE_ARGS: ClassVar[dict[str, Any]] = {
+        "materialized": "view",
+        "overwrite": True,
+    }
+
     _connections: ClassVar[dict[tuple[tuple[str, str]], BaseBackend]] = {}
 
     def __init__(
@@ -32,9 +38,17 @@ class TableDataset(AbstractDataset[ir.Table, ir.Table]):
         self._file_format = file_format
         self._table_name = table_name
         self._connection_config = connection
-        self._load_args = {} if load_args is None else deepcopy(load_args)
-        self._save_args = {} if save_args is None else deepcopy(save_args)
-        self._materialized = self._save_args.pop("materialized", "view")
+
+        # Set load and save arguments, overwriting defaults if provided.
+        self._load_args = deepcopy(self.DEFAULT_LOAD_ARGS)
+        if load_args is not None:
+            self._load_args.update(load_args)
+
+        self._save_args = deepcopy(self.DEFAULT_SAVE_ARGS)
+        if save_args is not None:
+            self._save_args.update(save_args)
+
+        self._materialized = self._save_args.pop("materialized")
 
     @property
     def connection(self) -> BaseBackend:
