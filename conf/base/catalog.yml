@@ -33,3 +33,17 @@ stg_payments:
   type: jaffle_shop.datasets.ibis.TableDataset
   table_name: stg_payments
   connection: ${_duckdb}
+
+customers:
+  type: jaffle_shop.datasets.ibis.TableDataset
+  table_name: customers
+  connection: ${_duckdb}
+  save_args:
+    materialized: table
+
+orders:
+  type: jaffle_shop.datasets.ibis.TableDataset
+  table_name: orders
+  connection: ${_duckdb}
+  save_args:
+    materialized: table
