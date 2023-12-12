@@ -90,3 +90,8 @@ class TableDataset(AbstractDataset[ir.Table, ir.Table]):
             "save_args": self._save_args,
             "materialized": self._materialized,
         }
+
+    def _exists(self) -> bool:
+        return (
+            self._table_name is not None and self._table_name in self.connection.tables
+        )
