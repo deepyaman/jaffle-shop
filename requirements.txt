@@ -4,6 +4,6 @@ ipython~=8.10; python_version >= '3.8'
 jupyterlab_server>=2.11.1
 jupyterlab~=3.0
 jupyter~=1.0
-kedro-telemetry~=0.2.0
-kedro-viz @ git+https://github.com/kedro-org/kedro-viz.git@main#subdirectory=package
-kedro @ git+https://github.com/kedro-org/kedro.git@develop
+kedro~=0.19
+kedro-telemetry
+kedro-viz

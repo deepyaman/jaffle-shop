@@ -13,7 +13,7 @@ jaffle-shop = "jaffle_shop.__main__:main"
 [tool.kedro]
 package_name = "jaffle_shop"
 project_name = "Jaffle Shop"
-kedro_init_version = "0.18.14"
+kedro_init_version = "0.19.1"
 tools = "['Data Structure', 'Kedro Viz']"
 
 [project.entry-points."kedro.hooks"]
