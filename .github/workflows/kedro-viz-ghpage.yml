@@ -22,7 +22,7 @@ jobs:
           set -ux
           python -m pip install --upgrade pip
           python -m pip install "kedro-viz>=7.1.0"
-          pip install -r requirements.txt
+          pip install -r requirements.txt kedro-datasets
           pip uninstall -y kedro-telemetry
           kedro viz build
 
