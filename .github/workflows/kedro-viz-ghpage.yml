@@ -1,4 +1,13 @@
 name: Deploy Kedro Viz to GitHub Pages
+inputs:
+  version:
+    description: 'Version of python to set up'
+    required: false
+    default: '3.9'
+  ghtoken:
+    description: 'GitHub token'
+    default: ${{ github.token }}
+    required: false
 on:
   push:
     branches:
