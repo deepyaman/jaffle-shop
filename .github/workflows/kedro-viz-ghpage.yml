@@ -1,0 +1,38 @@
+name: Deploy Kedro Viz to GitHub Pages
+on:
+  push:
+    branches:
+    - "*" # Revert to main before merged
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.version }}
+          cache: "pip"
+          # cache-dependency-path: pyproject.toml
+      - name: Install Dependencies
+        env:
+          USE_PRE: ${{ inputs.pre }}
+        shell: bash
+        run: |
+          set -ux
+          python -m pip install --upgrade pip
+          python -m pip install "kedro-viz>=7.1.0"
+          pip install -r requirements.txt
+          kedro viz build
+
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ inputs.ghtoken }}
+          force_orphan: true
+          publish_dir: ./build
+          # The following lines assign commit authorship to the official GH-Actions bot for deploys to `gh-pages` branch.
+          # You can swap them out with your own user credentials.
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
