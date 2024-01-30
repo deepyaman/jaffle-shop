@@ -3,10 +3,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import ibis
+import ibis.expr.types as ir
 from ibis import _
-
-if TYPE_CHECKING:
-    import ibis.expr.types as ir
 
 
 def process_customers(
