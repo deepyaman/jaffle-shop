@@ -54,14 +54,16 @@ def process_orders(
     )
 
     final = orders.left_join(order_payments, "order_id")[
-        orders.order_id,
-        orders.customer_id,
-        orders.order_date,
-        orders.status,
-        *[
-            order_payments[f"{payment_method}_amount"]
-            for payment_method in payment_methods
-        ],
-        order_payments.total_amount.name("amount"),
+        [
+            orders.order_id,
+            orders.customer_id,
+            orders.order_date,
+            orders.status,
+            *[
+                order_payments[f"{payment_method}_amount"]
+                for payment_method in payment_methods
+            ],
+            order_payments.total_amount.name("amount"),
+        ]
     ]
     return final
