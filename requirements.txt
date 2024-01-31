@@ -5,5 +5,6 @@ jupyterlab_server>=2.11.1
 jupyterlab~=3.0
 jupyter~=1.0
 kedro~=0.19
+kedro-datasets
 kedro-telemetry
 kedro-viz
