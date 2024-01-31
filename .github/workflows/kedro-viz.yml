@@ -4,14 +4,15 @@ on:
   pull_request:
   push:
     branches:
-      - "*" # Revert to main before merge
+      - main
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Fetch the repository
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -21,9 +22,9 @@ jobs:
         run: pip install -r requirements.txt
       - name: Consent to the use of Kedro-Telemetry
         run: "echo 'consent: true' > .telemetry"
-      - name: Build
+      - name: Create build directory
         run: kedro viz build
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
