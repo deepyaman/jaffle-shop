@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Consent to the use of Kedro-Telemetry
-        run: echo 'consent: true' > .telemetry
+        run: "echo 'consent: true' > .telemetry"
       - name: Build
         run: kedro viz build
       - name: Deploy
