@@ -1,28 +1,31 @@
-name: Deploy Kedro Viz to GitHub Pages
+name: Kedro-Viz
 
 on:
+  pull_request:
   push:
     branches:
       - "*" # Revert to main before merge
   workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt kedro-datasets
-          pip uninstall -y kedro-telemetry
-      - name: Build...
+        run: pip install -r requirements.txt
+      - name: Consent to the use of Kedro-Telemetry
+        run: echo 'consent: true' > .telemetry
+      - name: Build
         run: kedro viz build
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
