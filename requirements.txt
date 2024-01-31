@@ -8,3 +8,4 @@ kedro~=0.19
 kedro-datasets
 kedro-telemetry
 kedro-viz
+sqlglot<20.11
