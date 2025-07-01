@@ -4,8 +4,7 @@ https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 
 # Instantiated project hooks.
 # For example, after creating a hooks.py and defining a ProjectHooks class there, do
-# from pandas_viz.hooks import ProjectHooks
-
+# from jaffle_shop.hooks import ProjectHooks
 # Hooks are executed in a Last-In-First-Out (LIFO) order.
 # HOOKS = (ProjectHooks(),)
 
@@ -13,13 +12,12 @@ https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 # DISABLE_HOOKS_FOR_PLUGINS = ("kedro-viz",)
 
 # Class that manages storing KedroSession data.
-from pathlib import Path  # noqa: E402
-
-from kedro_viz.integrations.kedro.sqlite_store import SQLiteStore  # noqa: E402
-
-SESSION_STORE_CLASS = SQLiteStore
+# from kedro.framework.session.store import BaseSessionStore
+# SESSION_STORE_CLASS = BaseSessionStore
 # Keyword arguments to pass to the `SESSION_STORE_CLASS` constructor.
-SESSION_STORE_ARGS = {"path": str(Path(__file__).parents[2])}
+# SESSION_STORE_ARGS = {
+#     "path": "./sessions"
+# }
 
 # Directory that holds configuration.
 # CONF_SOURCE = "conf"
