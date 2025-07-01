@@ -1,0 +1,8 @@
+{
+  "type": "ibis.file_dataset.FileDataset",
+  "filepath": "/home/runner/work/jaffle-shop/jaffle-shop/data/01_raw/raw_customers.csv",
+  "run_command": null,
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

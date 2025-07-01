@@ -1,0 +1,12 @@
+{
+  "code": "def rename_customers(source: ibis.Table) -> ibis.Table:\n    renamed = source[\n        source.id.name(\"customer_id\"),\n        \"first_name\",\n        \"last_name\",\n    ]\n    return renamed\n",
+  "filepath": "jaffle-shop/src/jaffle_shop/pipelines/staging/nodes.py",
+  "parameters": {},
+  "run_command": "kedro run --to-nodes='rename_customers([raw_customers]) -> [stg_customers]'",
+  "inputs": [
+    "raw_customers"
+  ],
+  "outputs": [
+    "stg_customers"
+  ]
+}

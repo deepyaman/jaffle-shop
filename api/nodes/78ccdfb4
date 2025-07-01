@@ -1,0 +1,12 @@
+{
+  "code": "def rename_payments(source: ibis.Table) -> ibis.Table:\n    # `amount` is currently stored in cents, so we convert it to dollars\n    amount_in_dollars = (source.amount / 100).name(\"amount\")\n\n    renamed = source[\n        source.id.name(\"payment_id\"),\n        \"order_id\",\n        \"payment_method\",\n        amount_in_dollars,\n    ]\n    return renamed\n",
+  "filepath": "jaffle-shop/src/jaffle_shop/pipelines/staging/nodes.py",
+  "parameters": {},
+  "run_command": "kedro run --to-nodes='rename_payments([raw_payments]) -> [stg_payments]'",
+  "inputs": [
+    "raw_payments"
+  ],
+  "outputs": [
+    "stg_payments"
+  ]
+}

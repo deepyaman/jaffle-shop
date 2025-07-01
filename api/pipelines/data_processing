@@ -1,0 +1,223 @@
+{
+  "nodes": [
+    {
+      "id": "082f75b3",
+      "name": "stg_customers",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "dbadb0b1",
+      "name": "stg_orders",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "99bdd568",
+      "name": "stg_payments",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "c70a121d",
+      "name": "process_customers",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "70ef1c72",
+      "name": "customers",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "70f3cccb",
+      "name": "process_orders",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {
+        "payment_methods": [
+          "credit_card",
+          "coupon",
+          "bank_transfer",
+          "gift_card"
+        ]
+      }
+    },
+    {
+      "id": "aa1ea0e1",
+      "name": "params:payment_methods",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "parameters",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": null,
+      "stats": null
+    },
+    {
+      "id": "96584038",
+      "name": "orders",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "aa1ea0e1",
+      "target": "70f3cccb"
+    },
+    {
+      "source": "dbadb0b1",
+      "target": "70f3cccb"
+    },
+    {
+      "source": "c70a121d",
+      "target": "70ef1c72"
+    },
+    {
+      "source": "082f75b3",
+      "target": "c70a121d"
+    },
+    {
+      "source": "99bdd568",
+      "target": "70f3cccb"
+    },
+    {
+      "source": "99bdd568",
+      "target": "c70a121d"
+    },
+    {
+      "source": "dbadb0b1",
+      "target": "c70a121d"
+    },
+    {
+      "source": "70f3cccb",
+      "target": "96584038"
+    }
+  ],
+  "layers": [],
+  "tags": [],
+  "pipelines": [
+    {
+      "id": "__default__",
+      "name": "__default__"
+    },
+    {
+      "id": "seed",
+      "name": "seed"
+    },
+    {
+      "id": "staging",
+      "name": "staging"
+    },
+    {
+      "id": "data_processing",
+      "name": "data_processing"
+    }
+  ],
+  "modular_pipelines": {
+    "__root__": {
+      "id": "__root__",
+      "name": "__root__",
+      "inputs": [],
+      "outputs": [],
+      "children": [
+        {
+          "id": "c70a121d",
+          "type": "task"
+        },
+        {
+          "id": "99bdd568",
+          "type": "data"
+        },
+        {
+          "id": "dbadb0b1",
+          "type": "data"
+        },
+        {
+          "id": "70f3cccb",
+          "type": "task"
+        },
+        {
+          "id": "aa1ea0e1",
+          "type": "parameters"
+        },
+        {
+          "id": "70ef1c72",
+          "type": "data"
+        },
+        {
+          "id": "082f75b3",
+          "type": "data"
+        },
+        {
+          "id": "aa1ea0e1",
+          "type": "data"
+        },
+        {
+          "id": "96584038",
+          "type": "data"
+        }
+      ]
+    }
+  },
+  "selected_pipeline": "data_processing"
+}

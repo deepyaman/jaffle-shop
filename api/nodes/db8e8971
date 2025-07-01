@@ -1,0 +1,12 @@
+{
+  "code": "def identity(x: Any) -> Any:\n    return x\n",
+  "filepath": "jaffle-shop/src/jaffle_shop/pipelines/seed/nodes.py",
+  "parameters": {},
+  "run_command": "kedro run --to-nodes='identity([seed_customers]) -> [raw_customers]'",
+  "inputs": [
+    "seed_customers"
+  ],
+  "outputs": [
+    "raw_customers"
+  ]
+}

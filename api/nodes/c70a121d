@@ -1,0 +1,14 @@
+{
+  "code": "def process_customers(\n    customers: ibis.Table, orders: ibis.Table, payments: ibis.Table\n) -> ibis.Table:\n    customer_orders = orders.group_by(\"customer_id\").aggregate(\n        first_order=orders.order_date.min(),\n        most_recent_order=orders.order_date.max(),\n        number_of_orders=orders.order_id.count(),\n    )\n\n    customer_payments = (\n        payments.left_join(orders, \"order_id\")\n        .group_by(orders.customer_id)\n        .aggregate(total_amount=_.amount.sum())\n    )\n\n    final = (\n        customers.left_join(customer_orders, \"customer_id\")\n        .drop(\"customer_id_right\")\n        .left_join(customer_payments, \"customer_id\")[\n            \"customer_id\",\n            \"first_name\",\n            \"last_name\",\n            \"first_order\",\n            \"most_recent_order\",\n            \"number_of_orders\",\n            _.total_amount.name(\"customer_lifetime_value\"),\n        ]\n    )\n    return final\n",
+  "filepath": "jaffle-shop/src/jaffle_shop/pipelines/data_processing/nodes.py",
+  "parameters": {},
+  "run_command": "kedro run --to-nodes='process_customers([stg_customers;stg_orders;stg_payments]) -> [customers]'",
+  "inputs": [
+    "stg_customers",
+    "stg_orders",
+    "stg_payments"
+  ],
+  "outputs": [
+    "customers"
+  ]
+}

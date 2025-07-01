@@ -1,0 +1,214 @@
+{
+  "nodes": [
+    {
+      "id": "bd9bb7fc",
+      "name": "raw_customers",
+      "tags": [],
+      "pipelines": [
+        "seed",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "4206cc7f",
+      "name": "raw_orders",
+      "tags": [],
+      "pipelines": [
+        "seed",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "234d5a35",
+      "name": "raw_payments",
+      "tags": [],
+      "pipelines": [
+        "seed",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "db8e8971",
+      "name": "identity",
+      "tags": [],
+      "pipelines": [
+        "seed"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "43b18a77",
+      "name": "seed_customers",
+      "tags": [],
+      "pipelines": [
+        "seed"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.file_dataset.FileDataset",
+      "stats": null
+    },
+    {
+      "id": "3c3b498c",
+      "name": "identity",
+      "tags": [],
+      "pipelines": [
+        "seed"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "f8e8d0ea",
+      "name": "seed_orders",
+      "tags": [],
+      "pipelines": [
+        "seed"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.file_dataset.FileDataset",
+      "stats": null
+    },
+    {
+      "id": "c0d8cde7",
+      "name": "identity",
+      "tags": [],
+      "pipelines": [
+        "seed"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "4f515504",
+      "name": "seed_payments",
+      "tags": [],
+      "pipelines": [
+        "seed"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.file_dataset.FileDataset",
+      "stats": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "4f515504",
+      "target": "c0d8cde7"
+    },
+    {
+      "source": "3c3b498c",
+      "target": "4206cc7f"
+    },
+    {
+      "source": "c0d8cde7",
+      "target": "234d5a35"
+    },
+    {
+      "source": "db8e8971",
+      "target": "bd9bb7fc"
+    },
+    {
+      "source": "43b18a77",
+      "target": "db8e8971"
+    },
+    {
+      "source": "f8e8d0ea",
+      "target": "3c3b498c"
+    }
+  ],
+  "layers": [],
+  "tags": [],
+  "pipelines": [
+    {
+      "id": "__default__",
+      "name": "__default__"
+    },
+    {
+      "id": "seed",
+      "name": "seed"
+    },
+    {
+      "id": "staging",
+      "name": "staging"
+    },
+    {
+      "id": "data_processing",
+      "name": "data_processing"
+    }
+  ],
+  "modular_pipelines": {
+    "__root__": {
+      "id": "__root__",
+      "name": "__root__",
+      "inputs": [],
+      "outputs": [],
+      "children": [
+        {
+          "id": "bd9bb7fc",
+          "type": "data"
+        },
+        {
+          "id": "f8e8d0ea",
+          "type": "data"
+        },
+        {
+          "id": "4206cc7f",
+          "type": "data"
+        },
+        {
+          "id": "4f515504",
+          "type": "data"
+        },
+        {
+          "id": "db8e8971",
+          "type": "task"
+        },
+        {
+          "id": "3c3b498c",
+          "type": "task"
+        },
+        {
+          "id": "234d5a35",
+          "type": "data"
+        },
+        {
+          "id": "c0d8cde7",
+          "type": "task"
+        },
+        {
+          "id": "43b18a77",
+          "type": "data"
+        }
+      ]
+    }
+  },
+  "selected_pipeline": "seed"
+}

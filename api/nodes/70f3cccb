@@ -1,0 +1,21 @@
+{
+  "code": "def process_orders(\n    orders: ibis.Table, payments: ibis.Table, payment_methods: list[str]\n) -> ibis.Table:\n    total_amount_by_payment_method = {}\n    for payment_method in payment_methods:\n        total_amount_by_payment_method[f\"{payment_method}_amount\"] = ibis.coalesce(\n            payments.amount.sum(where=payments.payment_method == payment_method), 0\n        )\n\n    order_payments = payments.group_by(\"order_id\").aggregate(\n        **total_amount_by_payment_method, total_amount=payments.amount.sum()\n    )\n\n    final = orders.left_join(order_payments, \"order_id\")[\n        [\n            orders.order_id,\n            orders.customer_id,\n            orders.order_date,\n            orders.status,\n            *[\n                order_payments[f\"{payment_method}_amount\"]\n                for payment_method in payment_methods\n            ],\n            order_payments.total_amount.name(\"amount\"),\n        ]\n    ]\n    return final\n",
+  "filepath": "jaffle-shop/src/jaffle_shop/pipelines/data_processing/nodes.py",
+  "parameters": {
+    "payment_methods": [
+      "credit_card",
+      "coupon",
+      "bank_transfer",
+      "gift_card"
+    ]
+  },
+  "run_command": "kedro run --to-nodes='process_orders([stg_orders;stg_payments;params:payment_methods]) -> [orders]'",
+  "inputs": [
+    "stg_orders",
+    "stg_payments",
+    "params:payment_methods"
+  ],
+  "outputs": [
+    "orders"
+  ]
+}

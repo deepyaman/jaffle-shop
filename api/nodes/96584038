@@ -1,0 +1,8 @@
+{
+  "type": "ibis.table_dataset.TableDataset",
+  "filepath": null,
+  "run_command": "kedro run --to-outputs=orders",
+  "preview": null,
+  "preview_type": null,
+  "stats": null
+}

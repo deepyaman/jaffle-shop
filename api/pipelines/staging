@@ -1,0 +1,223 @@
+{
+  "nodes": [
+    {
+      "id": "69aff480",
+      "name": "rename_customers",
+      "tags": [],
+      "pipelines": [
+        "__default__",
+        "staging"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "bd9bb7fc",
+      "name": "raw_customers",
+      "tags": [],
+      "pipelines": [
+        "seed",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "082f75b3",
+      "name": "stg_customers",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "fe348386",
+      "name": "rename_orders",
+      "tags": [],
+      "pipelines": [
+        "__default__",
+        "staging"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "4206cc7f",
+      "name": "raw_orders",
+      "tags": [],
+      "pipelines": [
+        "seed",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "dbadb0b1",
+      "name": "stg_orders",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "78ccdfb4",
+      "name": "rename_payments",
+      "tags": [],
+      "pipelines": [
+        "__default__",
+        "staging"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "parameters": {}
+    },
+    {
+      "id": "234d5a35",
+      "name": "raw_payments",
+      "tags": [],
+      "pipelines": [
+        "seed",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    },
+    {
+      "id": "99bdd568",
+      "name": "stg_payments",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__",
+        "staging"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "layer": null,
+      "dataset_type": "ibis.table_dataset.TableDataset",
+      "stats": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "234d5a35",
+      "target": "78ccdfb4"
+    },
+    {
+      "source": "69aff480",
+      "target": "082f75b3"
+    },
+    {
+      "source": "bd9bb7fc",
+      "target": "69aff480"
+    },
+    {
+      "source": "78ccdfb4",
+      "target": "99bdd568"
+    },
+    {
+      "source": "fe348386",
+      "target": "dbadb0b1"
+    },
+    {
+      "source": "4206cc7f",
+      "target": "fe348386"
+    }
+  ],
+  "layers": [],
+  "tags": [],
+  "pipelines": [
+    {
+      "id": "__default__",
+      "name": "__default__"
+    },
+    {
+      "id": "seed",
+      "name": "seed"
+    },
+    {
+      "id": "staging",
+      "name": "staging"
+    },
+    {
+      "id": "data_processing",
+      "name": "data_processing"
+    }
+  ],
+  "modular_pipelines": {
+    "__root__": {
+      "id": "__root__",
+      "name": "__root__",
+      "inputs": [],
+      "outputs": [],
+      "children": [
+        {
+          "id": "bd9bb7fc",
+          "type": "data"
+        },
+        {
+          "id": "dbadb0b1",
+          "type": "data"
+        },
+        {
+          "id": "99bdd568",
+          "type": "data"
+        },
+        {
+          "id": "fe348386",
+          "type": "task"
+        },
+        {
+          "id": "69aff480",
+          "type": "task"
+        },
+        {
+          "id": "4206cc7f",
+          "type": "data"
+        },
+        {
+          "id": "234d5a35",
+          "type": "data"
+        },
+        {
+          "id": "082f75b3",
+          "type": "data"
+        },
+        {
+          "id": "78ccdfb4",
+          "type": "task"
+        }
+      ]
+    }
+  },
+  "selected_pipeline": "staging"
+}
