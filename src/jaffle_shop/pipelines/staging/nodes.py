@@ -1,12 +1,7 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    import ibis.expr.types as ir
+import ibis
 
 
-def rename_customers(source: ir.Table) -> ir.Table:
+def rename_customers(source: ibis.Table) -> ibis.Table:
     renamed = source[
         source.id.name("customer_id"),
         "first_name",
@@ -15,7 +10,7 @@ def rename_customers(source: ir.Table) -> ir.Table:
     return renamed
 
 
-def rename_orders(source: ir.Table) -> ir.Table:
+def rename_orders(source: ibis.Table) -> ibis.Table:
     renamed = source[
         source.id.name("order_id"),
         source.user_id.name("customer_id"),
@@ -25,7 +20,7 @@ def rename_orders(source: ir.Table) -> ir.Table:
     return renamed
 
 
-def rename_payments(source: ir.Table) -> ir.Table:
+def rename_payments(source: ibis.Table) -> ibis.Table:
     # `amount` is currently stored in cents, so we convert it to dollars
     amount_in_dollars = (source.amount / 100).name("amount")
 

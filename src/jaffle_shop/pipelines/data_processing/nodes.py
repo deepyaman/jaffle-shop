@@ -1,17 +1,10 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
 import ibis
 from ibis import _
 
-if TYPE_CHECKING:
-    import ibis.expr.types as ir
-
 
 def process_customers(
-    customers: ir.Table, orders: ir.Table, payments: ir.Table
-) -> ir.Table:
+    customers: ibis.Table, orders: ibis.Table, payments: ibis.Table
+) -> ibis.Table:
     customer_orders = orders.group_by("customer_id").aggregate(
         first_order=orders.order_date.min(),
         most_recent_order=orders.order_date.max(),
@@ -41,8 +34,8 @@ def process_customers(
 
 
 def process_orders(
-    orders: ir.Table, payments: ir.Table, payment_methods: list[str]
-) -> ir.Table:
+    orders: ibis.Table, payments: ibis.Table, payment_methods: list[str]
+) -> ibis.Table:
     total_amount_by_payment_method = {}
     for payment_method in payment_methods:
         total_amount_by_payment_method[f"{payment_method}_amount"] = ibis.coalesce(
