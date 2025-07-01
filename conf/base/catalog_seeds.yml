@@ -1,17 +1,17 @@
 seed_customers:
-  type: jaffle_shop.datasets.ibis.TableDataset
+  type: ibis.FileDataset
   filepath: data/01_raw/raw_customers.csv
   file_format: csv
   connection: ${_duckdb}
 
 seed_orders:
-  type: jaffle_shop.datasets.ibis.TableDataset
+  type: ibis.FileDataset
   filepath: data/01_raw/raw_orders.csv
   file_format: csv
   connection: ${_duckdb}
 
 seed_payments:
-  type: jaffle_shop.datasets.ibis.TableDataset
+  type: ibis.FileDataset
   filepath: data/01_raw/raw_payments.csv
   file_format: csv
   connection: ${_duckdb}
