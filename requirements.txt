@@ -8,3 +8,4 @@ kedro~=0.19
 kedro-datasets[ibis-duckdb]
 kedro-telemetry
 kedro-viz
+pandera[ibis]>=0.25.0
