@@ -40,6 +40,31 @@ customers:
   connection: ${_duckdb}
   save_args:
     materialized: table
+  metadata:
+    kedro-semantic-layer:
+      description: "Customer overview data mart, offering key details for each unique customer. This contains one row per customer."
+
+      dimensions:
+        # Classic format
+        customer_name: _.first_name + " " + _.last_name
+
+        # New format
+        first_order:
+          expr: _.first_order
+          is_time_dimension: True
+          smallest_time_grain: "day"
+        most_recent_order:
+          expr: _.most_recent_order
+          is_time_dimension: True
+          smallest_time_grain: "day"
+
+      measures:
+        count_lifetime_orders:
+          expr: _.number_of_orders.sum()
+          description: "Total count of orders per customer."
+        lifetime_spend:
+          expr: _.customer_lifetime_value.sum()
+          description: "Gross customer lifetime spend."
 
 orders:
   type: ibis.TableDataset
@@ -47,3 +72,21 @@ orders:
   connection: ${_duckdb}
   save_args:
     materialized: table
+  metadata:
+    kedro-semantic-layer:
+      description: "Order fact table. This table is at the order grain with one row per order."
+
+      dimensions:
+        order_date:
+          expr: _.order_date
+          is_event_timestamp: True
+          smallest_time_grain: "day"
+        status: _.status
+
+      measures:
+        order_total:
+          expr: _.amount.sum()
+          description: "Sum of total order amount."
+        order_count:
+          expr: _.count()
+          description: "Count of orders."
